@@ -1,6 +1,6 @@
 import styles from "./SearchBar.module.css";
 
-export default function SearchBar() {
+export default function SearchBar({ value, onChange }) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.inputGroup}>
@@ -23,7 +23,18 @@ export default function SearchBar() {
           type="text"
           placeholder="Search characters..."
           className={styles.input}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
         />
+        {value && (
+          <button
+            onClick={() => onChange("")}
+            className={styles.clearButton}
+            type="button"
+          >
+            ✕
+          </button>
+        )}
       </div>
     </div>
   );
